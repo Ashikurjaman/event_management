@@ -5,7 +5,7 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthContextProvider = ({children}) => {
-    const [user,setUser] =useState(null);
+    const [user,setUser] =useState();
     const [loader, setLoader] = useState(true)
 
     
@@ -13,16 +13,12 @@ const AuthContextProvider = ({children}) => {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
-            if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/auth.user
+            
                 console.log('user is login');
+                setUser(currentUser)
+                setLoader(false);
                 // ...
-              } else {
-                // User is signed out
-                // ...
-                console.log('user is logout');
-              }
+              
         })
 
         return ()=>{
@@ -31,19 +27,19 @@ const AuthContextProvider = ({children}) => {
     },[]);
     const provider = new GoogleAuthProvider();
 
-    const googleLogin()=>{
-        signInWithPopup(auth, provider)
-    }
+    // const googleUserLogin()=>{
+    //   return  signInWithPopup(auth, provider)
+    // }
 
     const createUser =(email,password)=>{
-        createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const userLogin =(email,password)=>{
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
     const logOut = ()=>{
-        signOut(auth)
+        return signOut(auth)
     }
 
     const authInfo = {
@@ -51,7 +47,7 @@ const AuthContextProvider = ({children}) => {
         user,
         userLogin,
         logOut,
-        googleLogin
+        loader
     }
     return (
         <AuthContext.Provider value={authInfo}>

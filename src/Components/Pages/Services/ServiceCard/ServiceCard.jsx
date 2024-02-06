@@ -21,7 +21,7 @@ const ServiceCard = ({data}) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">Shoes!</h2>
-        <p>{title.length > 100 ? <p>{title.slice(0,100)}<small className="font-bold"><Link> Read more..</Link></small></p>
+        <p>{title.length < 100 ? title
         :
         title
     
