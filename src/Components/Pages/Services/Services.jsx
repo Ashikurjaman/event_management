@@ -13,10 +13,10 @@ const Services = () => {
 
     return (
         <div>
-            <h2>sdsds</h2>
-            <div className="grid grid-cols-3 gap-4 ">
+            <h2 className="text-4xl font-bold text-center pb-12 pt-8 ">Services</h2>
+            <div className="grid md:grid-cols-3 gap-4 sm:justify-items-center ">
             {
-                data.map(d =><ServiceCard key={d._id} data={d}></ServiceCard>)
+                data.slice(0,6).map(d =><ServiceCard key={d._id} data={d}></ServiceCard>)
             }
             </div>
             

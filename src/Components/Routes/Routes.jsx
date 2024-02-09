@@ -8,6 +8,8 @@ import About from "../Pages/About/About";
 import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
 import Services from "../Pages/Services/Services";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import ServiceCard from "../Pages/Services/ServiceCard/ServiceCard";
 
   export const router = createBrowserRouter([
     {
@@ -18,6 +20,7 @@ import Services from "../Pages/Services/Services";
             path:'/',
             element:<Home/>
         },
+
         {
             path:'/about',
             element:<About/>
@@ -31,8 +34,13 @@ import Services from "../Pages/Services/Services";
             element:<Register/>
         },
         {
+            path:'/services/:id',
+            element:<PrivateRoute><Services/></PrivateRoute>,
+            
+        },
+        {
             path:'/services',
-            element:<Services/>,
+            element:<ServiceCard/>,
             
         },
 

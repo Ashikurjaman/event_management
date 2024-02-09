@@ -34,7 +34,7 @@ const ServiceCard = ({data}) => {
     
     }</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <Link to={`/services/${_id}`}><button className="btn btn-primary">Buy Now</button></Link>
         </div>
       </div>
     </div>
